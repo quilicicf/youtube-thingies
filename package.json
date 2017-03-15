@@ -1,0 +1,22 @@
+{
+  "name": "youtube-thingies",
+  "version": "1.0.0",
+  "description": "Thingies with youtube API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quilicicf/youtube-thingies.git"
+  },
+  "bugs": {
+    "url": "https://github.com/quilicicf/youtube-thingies/issues"
+  },
+  "author": "quilicicf <quilicicf@gmail.com> (https://github.com/quilicicf)",
+  "license": "MIT",
+  "dependencies": {
+    "youtube-search": "^1.0.8"
+  },
+  "ES6": true
+}
