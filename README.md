@@ -48,6 +48,8 @@ Will search for the song on youtube API using the artist and name of the music i
 
 ### The future
 
+- [ ] Explain how to implement the API in the README
+- [ ] Explain how to install rsync in the README
 - [ ] Create/run playlists
 - [ ] Bulk download from API
 - [ ] Allow user to choose the link from youtube's API results
