@@ -2,7 +2,7 @@
 
 'use strict';
 
-const commandsMap = require('./src/methods.js')
+const commandsMap = require('./src/commands.js')
   .commandsMap;
 
 

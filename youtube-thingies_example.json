@@ -2,5 +2,13 @@
   "youtube_search_config": {
     "maxResults": 10,
     "key": "YOUR YOUTUBE API KEY HERE"
+  },
+  "result_handlers": {
+    "api": {
+      "hostname": "mymusic.net",
+      "basePath": "/v1/songs/",
+      "login": "YOUR API LOGIN HERE",
+      "password": "YOUR API PASSWORD HERE"
+    }
   }
 }

@@ -1,12 +1,54 @@
 # youtube-thingies
 
-Fumbling with youtube API.
+This CLI tool is aimed at making maintenance of one's music library easier.
 
-## How to use
+1. Create and deploy an API implementing [the Swagger definition](./doc/music_api_swagger.json) ([Restlet Cloud](https://cloud.restlet.com) might be your friend there).
+1. Create a synchronized folder for your music (you can use [rsync](https://www.digitalocean.com/community/tutorials/how-to-use-rsync-to-sync-local-and-remote-directories-on-a-vps) for example) so that your music is up-to-date on all your devices
+1. Use this tool to find and download music via youtube
+1. Be sure not to download any music on which you have no copyright of course
+
+## Install
 
 - Fork this repository
 - Get your Youtube API token from [API console](https://console.developers.google.com/apis/dashboard).
 - Copy `youtube-thingies_example.json` to `~/.youtube-thingies.json`
 - Put the API token in the COPIED file (you don't want to accidentally push it to github)
 - Run `npm i -g` in the repository
-- You can now run `yt-search` from anywhere on your machine :firework:
+- You can now run `ythingies` from anywhere on your machine :firework:
+
+## Available commands
+
+### Search
+
+```shell
+#        | Command | Key words for youtube search
+ythingies search     jon lajoie this is the best song
+```
+
+Will search for the song in youtube API, download it into your shared folder and POST its metadata on your API.
+
+### Search from record ID
+
+```shell
+#        | Command            | Record ID on the API
+ythingies searchFromApiRecord   206becd1-724f-468c-87ec-cd3b5df63466
+```
+
+Will search for the song on youtube API using the artist and name of the music it fetched from your API and download it into your shared folder.
+
+## Roadmap
+
+### MVP (no I'm definitely not there yet)
+
+- [ ] Actually download the music (first result for a start)
+- [ ] Actually push the new record on the user's API
+
+### The future
+
+- [ ] Create/run playlists
+- [ ] Bulk download from API
+- [ ] Allow user to choose the link from youtube's API results
+
+## Contributing
+
+If you'd like to give a hand, please contact me by email.

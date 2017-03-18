@@ -8,9 +8,9 @@ module.exports = (() => {
   const handlersMap = require('./handlers.js')
     .handlersMap;
 
-  /////////////
-  // METHODS //
-  /////////////
+  //////////////
+  // COMMANDS //
+  //////////////
 
   const searchCallback = (keywords, resolve, reject) => {
     searcher(keywords.join(' '), config.youtube_search_config, (err, results) => {
