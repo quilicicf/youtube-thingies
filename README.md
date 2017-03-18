@@ -44,12 +44,14 @@ Will search for the song on youtube API using the artist and name of the music i
 
 - [ ] Actually download the music (first result for a start)
 - [ ] Actually push the new record on the user's API
+- [ ] Add a help command
 
 ### The future
 
 - [ ] Create/run playlists
 - [ ] Bulk download from API
 - [ ] Allow user to choose the link from youtube's API results
+- [ ] Conquer the world
 
 ## Contributing
 
