@@ -1,0 +1,226 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "",
+    "version" : "1.1.0",
+    "title" : "RS_my_music",
+    "contact" : {
+      "name" : "Cyprien Quilici",
+      "email" : "cquilici@restlet.com"
+    }
+  },
+  "host" : "rsmymusic.restlet.net",
+  "basePath" : "/v1",
+  "tags" : [ {
+    "name" : "RS_my_music",
+    "description" : "Imported from RS_my_music"
+  } ],
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/songs/" : {
+      "get" : {
+        "tags" : [ "RS_my_music" ],
+        "description" : "Loads a list of Song",
+        "operationId" : "getSongs",
+        "produces" : [ "application/json", "application/x-yaml", "application/xml", "text/xml" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "description" : "Allows to filter the collections of result by the value of field id",
+          "required" : false,
+          "type" : "string",
+          "x-example" : "sample id"
+        }, {
+          "name" : "$size",
+          "in" : "query",
+          "description" : "Size of the page to retrieve. Integer value",
+          "required" : false,
+          "type" : "string",
+          "x-example" : "sample $size"
+        }, {
+          "name" : "$page",
+          "in" : "query",
+          "description" : "Number of the page to retrieve. Integer value.",
+          "required" : false,
+          "type" : "string",
+          "x-example" : "sample $page"
+        }, {
+          "name" : "$sort",
+          "in" : "query",
+          "description" : "Order in which to retrieve the results. Multiple sort criteria can be passed. Example: sort=age ASC,height DESC",
+          "required" : false,
+          "type" : "string",
+          "x-example" : "sample $sort"
+        }, {
+          "name" : "name",
+          "in" : "query",
+          "description" : "Allows to filter the collections of result by the value of field name",
+          "required" : false,
+          "type" : "string",
+          "x-example" : "sample name"
+        }, {
+          "name" : "artist",
+          "in" : "query",
+          "description" : "Allows to filter the collections of result by the value of field artist",
+          "required" : false,
+          "type" : "string",
+          "x-example" : "sample artist"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Song"
+              }
+            }
+          },
+          "400" : {
+            "description" : "Status 400"
+          }
+        },
+        "security" : [ {
+          "HTTP_BASIC" : [ ]
+        } ]
+      },
+      "post" : {
+        "tags" : [ "RS_my_music" ],
+        "description" : "Adds a Song",
+        "operationId" : "postSongs",
+        "consumes" : [ "application/json", "application/x-yaml", "application/xml", "text/xml" ],
+        "produces" : [ "application/json", "application/x-yaml", "application/xml", "text/xml" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Song"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Song"
+            }
+          }
+        },
+        "security" : [ {
+          "HTTP_BASIC" : [ ]
+        } ]
+      }
+    },
+    "/songs/{songid}" : {
+      "get" : {
+        "tags" : [ "RS_my_music" ],
+        "description" : "Loads a Song",
+        "operationId" : "getSongsSongid",
+        "produces" : [ "application/json", "application/x-yaml", "application/xml", "text/xml" ],
+        "parameters" : [ {
+          "name" : "songid",
+          "in" : "path",
+          "description" : "Identifier of the Song",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "sample songid"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Song"
+            }
+          },
+          "400" : {
+            "description" : "Status 400"
+          }
+        },
+        "security" : [ {
+          "HTTP_BASIC" : [ ]
+        } ]
+      },
+      "put" : {
+        "tags" : [ "RS_my_music" ],
+        "description" : "Stores a Song",
+        "operationId" : "putSongsSongid",
+        "consumes" : [ "application/json", "application/x-yaml", "application/xml", "text/xml" ],
+        "produces" : [ "application/json", "application/x-yaml", "application/xml", "text/xml" ],
+        "parameters" : [ {
+          "name" : "songid",
+          "in" : "path",
+          "description" : "Identifier of the Song",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "sample songid"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Song"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/Song"
+            }
+          }
+        },
+        "security" : [ {
+          "HTTP_BASIC" : [ ]
+        } ]
+      },
+      "delete" : {
+        "tags" : [ "RS_my_music" ],
+        "description" : "Deletes a Song",
+        "operationId" : "deleteSongsSongid",
+        "parameters" : [ {
+          "name" : "songid",
+          "in" : "path",
+          "description" : "Identifier of the Song",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "sample songid"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200"
+          }
+        },
+        "security" : [ {
+          "HTTP_BASIC" : [ ]
+        } ]
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "HTTP_BASIC" : {
+      "type" : "basic"
+    }
+  },
+  "definitions" : {
+    "Song" : {
+      "type" : "object",
+      "required" : [ "artist", "id", "name" ],
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "example" : "sample id",
+          "description" : "Auto-generated primary key field"
+        },
+        "artist" : {
+          "type" : "string",
+          "example" : "sample artist"
+        },
+        "name" : {
+          "type" : "string",
+          "example" : "sample name"
+        }
+      },
+      "example" : "{\"id\":\"sample id\",\"artist\":\"sample artist\",\"name\":\"sample name\"}"
+    }
+  }
+}
