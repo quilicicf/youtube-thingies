@@ -7,6 +7,8 @@ This CLI tool is aimed at making maintenance of one's music library easier.
 1. Use this tool to find and download music via youtube
 1. Be sure not to download any music on which you have no copyright of course
 
+_Note:_ I have not reach a MVP ATM so the tool is not versioned/properly named yet.
+
 ## Install
 
 - Fork this repository
