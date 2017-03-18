@@ -1,0 +1,6 @@
+{
+  "youtube_search_config": {
+    "maxResults": 10,
+    "key": "YOUR YOUTUBE API KEY HERE"
+  }
+}

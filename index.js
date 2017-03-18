@@ -1,18 +1,13 @@
-module.exports = (() => {
-  'use strict';
+#!/usr/bin/env node
 
-  const searcher = require('youtube-search');
-  const config = require('./config.json');
+'use strict';
 
-  return {
-    search: (keyword) => {
-      searcher(keyword, config, (err, results) => {
-        if (err) {
-          return console.log(err);
-        }
+const commandsMap = require('./src/methods.js')
+  .commandsMap;
 
-        console.log(results);
-      });
-    }
-  };
-})();
+
+const main = () => {
+  commandsMap[ process.argv[ 2 ] ](process.argv.splice(3));
+};
+
+main();
