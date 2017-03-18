@@ -2,10 +2,10 @@
 
 This CLI tool is aimed at making maintenance of one's music library easier.
 
-1. Create and deploy an API implementing [the Swagger definition](./doc/music_api_swagger.json) ([Restlet Cloud](https://cloud.restlet.com) might be your friend there).
-1. Create a synchronized folder for your music (you can use [rsync](https://www.digitalocean.com/community/tutorials/how-to-use-rsync-to-sync-local-and-remote-directories-on-a-vps) for example) so that your music is up-to-date on all your devices
-1. Use this tool to find and download music via youtube
-1. Be sure not to download any music on which you have no copyright of course
+1. Create and deploy an API implementing [the Swagger definition](./doc/music_api_swagger.json) ([Restlet Cloud](https://cloud.restlet.com) might be your friend there). Only JSON is supposed to be supported, the API only performs CRUD operations on songs.
+2. Create a synchronized folder for your music (you can use [rsync](https://www.digitalocean.com/community/tutorials/how-to-use-rsync-to-sync-local-and-remote-directories-on-a-vps) for example) so that your music is up-to-date on all your devices
+3. Use this tool to find and download music via youtube
+4. Be sure not to download any music on which you have no copyright of course
 
 _Note:_ I have not reach a MVP ATM so the tool is not versioned/properly named yet.
 

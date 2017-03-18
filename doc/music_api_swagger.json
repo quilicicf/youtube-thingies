@@ -20,7 +20,7 @@
     "/songs/" : {
       "get" : {
         "tags" : [ "RS_my_music" ],
-        "description" : "Loads a list of Song",
+        "description" : "Loads the list of `Song`s",
         "operationId" : "getSongs",
         "produces" : [ "application/json", "application/x-yaml", "application/xml", "text/xml" ],
         "parameters" : [ {
@@ -86,7 +86,7 @@
       },
       "post" : {
         "tags" : [ "RS_my_music" ],
-        "description" : "Adds a Song",
+        "description" : "Adds a `Song`",
         "operationId" : "postSongs",
         "consumes" : [ "application/json", "application/x-yaml", "application/xml", "text/xml" ],
         "produces" : [ "application/json", "application/x-yaml", "application/xml", "text/xml" ],
@@ -114,7 +114,7 @@
     "/songs/{songid}" : {
       "get" : {
         "tags" : [ "RS_my_music" ],
-        "description" : "Loads a Song",
+        "description" : "Loads a `Song`",
         "operationId" : "getSongsSongid",
         "produces" : [ "application/json", "application/x-yaml", "application/xml", "text/xml" ],
         "parameters" : [ {
@@ -142,7 +142,7 @@
       },
       "put" : {
         "tags" : [ "RS_my_music" ],
-        "description" : "Stores a Song",
+        "description" : "Stores a `Song`",
         "operationId" : "putSongsSongid",
         "consumes" : [ "application/json", "application/x-yaml", "application/xml", "text/xml" ],
         "produces" : [ "application/json", "application/x-yaml", "application/xml", "text/xml" ],
@@ -175,7 +175,7 @@
       },
       "delete" : {
         "tags" : [ "RS_my_music" ],
-        "description" : "Deletes a Song",
+        "description" : "Deletes a `Song`",
         "operationId" : "deleteSongsSongid",
         "parameters" : [ {
           "name" : "songid",
@@ -213,11 +213,13 @@
         },
         "artist" : {
           "type" : "string",
-          "example" : "sample artist"
+          "example" : "sample artist",
+          "description" : "The `Song`'s artist"
         },
         "name" : {
           "type" : "string",
-          "example" : "sample name"
+          "example" : "sample name",
+          "description" : "The `Song`'s name"
         }
       },
       "example" : "{\"id\":\"sample id\",\"artist\":\"sample artist\",\"name\":\"sample name\"}"
