@@ -49,6 +49,8 @@ Will search for the song on youtube API using the artist and name of the music i
 
 ### The future
 
+- [ ] Create a command `bootstrap` to create from existing library
+- [ ] Add a command `delete`
 - [ ] Explain how to implement the API in the README
 - [ ] Explain how to install rsync in the README
 - [ ] Create/run playlists
