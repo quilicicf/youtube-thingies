@@ -45,6 +45,7 @@ Will search for the song on youtube API using the artist and name of the music i
 - [ ] Actually download the music (first result for a start)
 - [ ] Actually push the new record on the user's API
 - [ ] Add a help command
+- [ ] Create a proper `config` command
 
 ### The future
 
