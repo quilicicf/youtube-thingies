@@ -17,7 +17,7 @@ module.exports = (() => {
   };
 
   const handlersMap = {
-    API: apiHandler
+    api: apiHandler
   };
 
   return {

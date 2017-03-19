@@ -12,9 +12,7 @@ module.exports = (() => {
   ////////////////
 
   const call = (id, method, config, data) => {
-    const apiHandler = config.result_handlers
-      .find(handlerConfig => handlerConfig.type === 'API');
-
+    const apiHandler = config.result_handlers.api;
 
     if (!apiHandler) {
       throw new Error('No API handler mate.');

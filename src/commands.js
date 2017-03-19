@@ -25,9 +25,10 @@ module.exports = (() => {
   const search = (keywords, recordId) => {
     return new Promise((resolve, reject) => searchCallback(keywords, resolve, reject))
       .then(results => {
-        config.result_handlers.map(handler_config => {
-          handlersMap[ handler_config.type ](handler_config, results, recordId);
-        });
+        Object.keys(config.result_handlers)
+          .map(handlerType => {
+            handlersMap[ handlerType ](config.result_handlers[ handlerType ], results, recordId);
+          });
       });
   };
 
