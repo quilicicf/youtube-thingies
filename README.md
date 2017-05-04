@@ -43,6 +43,7 @@ Will search for the song on youtube API using the artist and name of the music i
 ### MVP (no I'm definitely not there yet)
 
 - [ ] Actually download the music (first result for a start)
+- [ ] Chain handlers and document them
 - [ ] Actually push the new record on the user's API
 - [ ] Add a help command
 - [ ] Create a proper `config` command
@@ -51,6 +52,7 @@ Will search for the song on youtube API using the artist and name of the music i
 
 - [ ] Create a command `bootstrap` to create from existing library
 - [ ] Add a command `delete`
+- [ ] Add syntax completion
 - [ ] Explain how to implement the API in the README
 - [ ] Explain how to install rsync in the README
 - [ ] Create/run playlists

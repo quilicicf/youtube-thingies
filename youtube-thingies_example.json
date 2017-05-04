@@ -9,6 +9,9 @@
       "basePath": "/v1/songs/",
       "login": "YOUR API LOGIN HERE",
       "password": "YOUR API PASSWORD HERE"
+    },
+    "file": {
+      "path": "PATH TO WHERE THE MUSIC SHOULD BE STORED"
     }
   }
 }

@@ -20,7 +20,8 @@
   "license": "MIT",
   "dependencies": {
     "youtube-search": "^1.0.8",
-    "prompt": "^1.0.0"
+    "prompt": "^1.0.0",
+    "ytdl-core": "^0.10.1"
   },
   "ES6": true
 }
