@@ -19,8 +19,14 @@
   "author": "quilicicf <quilicicf@gmail.com> (https://github.com/quilicicf)",
   "license": "MIT",
   "dependencies": {
-    "youtube-search": "^1.0.8",
+    "bluebird": "^3.5.0",
+    "colors": "^1.1.2",
+    "lodash": "^4.17.4",
     "prompt": "^1.0.0",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1",
+    "yargs": "^8.0.2",
+    "youtube-search": "^1.0.8",
     "ytdl-core": "^0.10.1"
   },
   "ES6": true
