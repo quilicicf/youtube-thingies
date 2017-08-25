@@ -80,13 +80,27 @@ module.exports = (() => {
 
     return request(stationFeedbackOptions)
       .then(stationFeedback => {
-        console.log(`For station ${station.name}:`.blue);
-        _(stationFeedback.feedback)
-          .each(feedbackDetails => {
+        const musicsDetails = _(stationFeedback.feedback)
+          .map(feedbackDetails => {
+            const albumArt = _(feedbackDetails.albumArt).find(art => art.size === 640);
+            const musicDetails = {
+              title: feedbackDetails.songTitle,
+              artist: feedbackDetails.artistName,
+              length: feedbackDetails.trackLength,
+              cover: _.get(albumArt, 'url')
+            };
             console.log(`${feedbackDetails.songTitle} from ${feedbackDetails.artistName}`.green);
-          });
-      });
+            return [ computeId(musicDetails), musicDetails ];
+          })
+          .fromPairs()
+          .value();
 
+        console.log(JSON.stringify(musicsDetails));
+      });
+  };
+
+  const computeId = musicDetails => {
+    return new Buffer(`${musicDetails.title}:${musicDetails.artist}`).toString('base64');
   };
 
   return {

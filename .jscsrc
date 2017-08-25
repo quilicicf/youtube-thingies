@@ -2,7 +2,11 @@
   "maxErrors": "2000",
   "maximumLineLength": {
     "value": 120,
-    "allExcept": ["comments", "functionSignature", "regex"]
+    "allExcept": [
+      "comments",
+      "functionSignature",
+      "regex"
+    ]
   },
   "requireCurlyBraces": [
     "if",
@@ -40,18 +44,49 @@
     "catch"
   ],
   "requireSpaceBeforeBinaryOperators": [
-    "=", "+=", "-=", "*=", "/=", "%=", "<<=", ">>=", ">>>=",
-    "&=", "|=", "^=", "+=",
-    "+", "-", "*", "/", "%", "<<", ">>", ">>>", "&",
-    "|", "^", "&&", "||", "===", "==", ">=",
-    "<=", "<", ">", "!=", "!=="
+    "=",
+    "+=",
+    "-=",
+    "*=",
+    "/=",
+    "%=",
+    "<<=",
+    ">>=",
+    ">>>=",
+    "&=",
+    "|=",
+    "^=",
+    "+=",
+    "+",
+    "-",
+    "*",
+    "/",
+    "%",
+    "<<",
+    ">>",
+    ">>>",
+    "&",
+    "|",
+    "^",
+    "&&",
+    "||",
+    "===",
+    "==",
+    ">=",
+    "<=",
+    "<",
+    ">",
+    "!=",
+    "!=="
   ],
   "requireSpacesInFunctionExpression": {
     "beforeOpeningCurlyBrace": true
   },
   "requireCamelCaseOrUpperCaseIdentifiers": true,
   "requireDotNotation": {
-    "allExcept": ["keywords"]
+    "allExcept": [
+      "keywords"
+    ]
   },
   "requireEarlyReturn": true,
   "requireLineFeedAtFileEnd": true,
@@ -67,14 +102,16 @@
     "mark": "'",
     "escape": true
   },
-  "disallowKeywords": ["with"],
+  "disallowKeywords": [
+    "with"
+  ],
   "disallowMixedSpacesAndTabs": true,
   "disallowMultipleLineBreaks": true,
   "disallowNewlineBeforeBlockStatements": true,
   "disallowSpaceAfterObjectKeys": true,
   "disallowSpaceAfterPrefixUnaryOperators": true,
   "disallowSpacesInCallExpression": true,
-  "disallowSpacesInsideArrayBrackets": true,
+  "disallowSpacesInsideArrayBrackets": false,
   "disallowSpacesInsideParentheses": true,
   "disallowTrailingWhitespace": true,
   "jsDoc": {
