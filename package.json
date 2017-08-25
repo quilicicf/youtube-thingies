@@ -21,6 +21,7 @@
   "dependencies": {
     "bluebird": "^3.5.0",
     "colors": "^1.1.2",
+    "jscs": "^3.0.7",
     "lodash": "^4.17.4",
     "prompt": "^1.0.0",
     "request": "^2.81.0",

@@ -4,7 +4,7 @@ module.exports = (() => {
   const fs = require('fs');
   const path = require('path');
   const request = require('request-promise');
-  const Promise = require("bluebird");
+  const Promise = require('bluebird');
   require('colors');
 
   const settingsPath = path.resolve(os.homedir(), '.config', 'youtube-thingies.json');
@@ -91,5 +91,5 @@ module.exports = (() => {
 
   return {
     pandora: thumbsup
-  }
+  };
 })();
