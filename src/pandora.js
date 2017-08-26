@@ -60,6 +60,9 @@ module.exports = (() => {
             })
             .value()
         );
+      })
+      .then(allStationsFeedback => {
+        addFeedback(allStationsFeedback);
       });
   };
 
@@ -80,27 +83,52 @@ module.exports = (() => {
 
     return request(stationFeedbackOptions)
       .then(stationFeedback => {
-        const musicsDetails = _(stationFeedback.feedback)
+        return _(stationFeedback.feedback)
           .map(feedbackDetails => {
             const albumArt = _(feedbackDetails.albumArt).find(art => art.size === 640);
             const musicDetails = {
-              title: feedbackDetails.songTitle,
               artist: feedbackDetails.artistName,
+              cover: _.get(albumArt, 'url'),
               length: feedbackDetails.trackLength,
-              cover: _.get(albumArt, 'url')
+              title: feedbackDetails.songTitle
             };
-            console.log(`${feedbackDetails.songTitle} from ${feedbackDetails.artistName}`.green);
             return [ computeId(musicDetails), musicDetails ];
           })
           .fromPairs()
           .value();
-
-        console.log(JSON.stringify(musicsDetails));
       });
+  };
+
+  const addFeedback = allStationsFeedback => {
+    const newFeedback = _(allStationsFeedback)
+      .map(stationFeedback => _.toPairs(stationFeedback))
+      .flatten()
+      .fromPairs()
+      .value();
+
+    const oldFeedback = retrieveOldFeedback(settings);
+    const mergedFeedback = _.cloneDeep(oldFeedback);
+
+    _(newFeedback)
+      .toPairs()
+      .reject(pair => _.has(oldFeedback, pair[ 0 ]))
+      .each(pair => _.set(mergedFeedback, pair[ 0 ], pair[ 1 ]));
+
+    fs.writeFileSync(settings.musicFile, sortedStringify(mergedFeedback), 'utf8');
+    console.log(`Music file written!`.green);
+  };
+
+  const retrieveOldFeedback = settings => {
+    const oldFeedbackAsString = fs.readFileSync(settings.musicFile, 'utf8');
+    return JSON.parse(oldFeedbackAsString);
   };
 
   const computeId = musicDetails => {
     return new Buffer(`${musicDetails.title}:${musicDetails.artist}`).toString('base64');
+  };
+
+  const sortedStringify = object => {
+    return JSON.stringify(Object.keys(object).sort().reduce((r, k) => (r[ k ] = object[ k ], r), {}), null, 2);
   };
 
   return {
