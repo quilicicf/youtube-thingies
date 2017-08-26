@@ -11,32 +11,7 @@ module.exports = (() => {
   const settingsAsString = fs.readFileSync(settingsPath, 'utf8');
   const settings = JSON.parse(settingsAsString);
 
-  const thumbsup = () => {
-    const authenticationCallOptions = {
-      uri: 'https://www.pandora.com/api/v1/auth/login',
-      method: 'POST',
-      json: {
-        existingAuthToken: '',
-        username: settings.login,
-        password: settings.password,
-        keepLoggedIn: true
-      },
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Cookie': 'csrftoken=ab824910ea434558',
-        'Host': 'www.pandora.com',
-        'X-CsrfToken': 'ab824910ea434558'
-      }
-    };
-
-    request(authenticationCallOptions)
-      .then(body => {
-        return retrieveThumbsup(body.authToken);
-      });
-  };
-
-  const retrieveThumbsup = authToken => {
+  const retrieveAllStationsThumbsup = authToken => {
     const stationsListOptions = {
       uri: 'https://www.pandora.com/api/v1/station/getStations',
       method: 'POST',
@@ -52,21 +27,10 @@ module.exports = (() => {
     };
 
     return request(stationsListOptions)
-      .then(stationList => {
-        return Promise.all(
-          _(stationList.stations)
-            .map(station => {
-              return retrieveStationsThumbsup(station, authToken);
-            })
-            .value()
-        );
-      })
-      .then(allStationsFeedback => {
-        addFeedback(allStationsFeedback);
-      });
+      .then(stationList => Promise.all(_.map(stationList.stations, station => retrieveOneStationThumbsup(station, authToken))));
   };
 
-  const retrieveStationsThumbsup = (station, authToken) => {
+  const retrieveOneStationThumbsup = (station, authToken) => {
     const stationFeedbackOptions = {
       uri: 'https://www.pandora.com/api/v1/station/getStationFeedback',
       method: 'POST',
@@ -99,14 +63,14 @@ module.exports = (() => {
       });
   };
 
-  const addFeedback = allStationsFeedback => {
+  const writeThumbsup = allStationsFeedback => {
     const newFeedback = _(allStationsFeedback)
       .map(stationFeedback => _.toPairs(stationFeedback))
       .flatten()
       .fromPairs()
       .value();
 
-    const oldFeedback = retrieveOldFeedback(settings);
+    const oldFeedback = retrieveCurrentMusic(settings);
     const mergedFeedback = _.cloneDeep(oldFeedback);
 
     _(newFeedback)
@@ -118,9 +82,9 @@ module.exports = (() => {
     console.log(`Music file written!`.green);
   };
 
-  const retrieveOldFeedback = settings => {
-    const oldFeedbackAsString = fs.readFileSync(settings.musicFile, 'utf8');
-    return JSON.parse(oldFeedbackAsString);
+  const retrieveCurrentMusic = settings => {
+    const currentMusicAsString = fs.readFileSync(settings.musicFile, 'utf8');
+    return JSON.parse(currentMusicAsString);
   };
 
   const computeId = musicDetails => {
@@ -132,6 +96,28 @@ module.exports = (() => {
   };
 
   return {
-    pandora: thumbsup
+    pandora: () => {
+      const authenticationCallOptions = {
+        uri: 'https://www.pandora.com/api/v1/auth/login',
+        method: 'POST',
+        json: {
+          existingAuthToken: '',
+          username: settings.login,
+          password: settings.password,
+          keepLoggedIn: true
+        },
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Cookie': 'csrftoken=ab824910ea434558',
+          'Host': 'www.pandora.com',
+          'X-CsrfToken': 'ab824910ea434558'
+        }
+      };
+
+      request(authenticationCallOptions)
+        .then(body => retrieveAllStationsThumbsup(body.authToken))
+        .then(allStationsFeedback => writeThumbsup(allStationsFeedback));
+    }
   };
 })();
