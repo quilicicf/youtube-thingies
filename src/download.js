@@ -15,6 +15,7 @@ const musicMetadata = require(musicMetadataPath);
 
 const musicPath = settings.musicFolder;
 
+const VIDEO_CHOICES_NUMBER = 8;
 const VIDEO_NAME_LENGTH = 40;
 const PROGRESS_BAR_OPTIONS = {
   format: `  ${'{bar}'.green} {percentage}% | ETA {eta}s`,
@@ -73,7 +74,7 @@ const downloadMusic = (metadata, shouldDownloadFirstChoice) => {
         }
 
         const choices = _(proposedVideos)
-          .take(5)
+          .take(VIDEO_CHOICES_NUMBER)
           .map((video) => {
             const videoName = _(video.title)
               .truncate({ length: VIDEO_NAME_LENGTH, omission: '…' })
@@ -101,6 +102,9 @@ const downloadMusic = (metadata, shouldDownloadFirstChoice) => {
       })
       .then((answer) => {
         return writeMusic(answer[ urlName ], musicPath, fileName.withExtension);
+      })
+      .catch((error) => {
+        throw error;
       });
   }
 
