@@ -20,7 +20,6 @@
   "license": "MIT",
   "dependencies": {
     "bluebird": "^3.5.0",
-    "colors": "^1.1.2",
     "jscs": "^3.0.7",
     "lodash": "^4.17.4",
     "prompt": "^1.0.0",
@@ -30,5 +29,12 @@
     "youtube-search": "^1.0.8",
     "ytdl-core": "^0.10.1"
   },
-  "ES6": true
+  "ES6": true,
+  "devDependencies": {
+    "alltomp3": "0.1.0",
+    "cli-progress": "1.7.0",
+    "colors": "1.1.2",
+    "got": "8.0.2",
+    "inquirer": "5.0.0"
+  }
 }

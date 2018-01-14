@@ -1,65 +1,54 @@
 # youtube-thingies
 
-This CLI tool is aimed at making maintenance of one's music library easier.
+This CLI tool helps you retrieve your thumps-up on [pandora](https://pandora.com) and download the songs from [Youtube](https://youtube.com).
 
-1. Create and deploy an API implementing [the Swagger definition](./doc/music_api_swagger.json) ([Restlet Cloud](https://cloud.restlet.com) might be your friend there). Only JSON is supposed to be supported, the API only performs CRUD operations on songs.
-2. Create a synchronized folder for your music (you can use [rsync](https://www.digitalocean.com/community/tutorials/how-to-use-rsync-to-sync-local-and-remote-directories-on-a-vps) for example) so that your music is up-to-date on all your devices
-3. Use this tool to find and download music via youtube
-4. Be sure not to download any music on which you have no copyright of course
+This tool is highly experimental!
 
-_Note:_ I have not reach a MVP ATM so the tool is not versioned/properly named yet.
+## Installation
 
-## Install
-
-- Fork this repository
-- Get your Youtube API token from [API console](https://console.developers.google.com/apis/dashboard).
-- Copy `youtube-thingies_example.json` to `~/.youtube-thingies.json`
-- Put the API token in the COPIED file (you don't want to accidentally push it to github)
-- Run `npm i -g` in the repository
-- You can now run `ythingies` from anywhere on your machine :firework:
-
-## Available commands
-
-### Search
+Only checked on Linux Mint:
 
 ```shell
-#        | Command | Key words for youtube search
-ythingies search     jon lajoie this is the best song
+# Install ffmpeg
+sudo apt-get install ffmpeg
+
+# Install chromaprint
+sudo apt-get install libchromaprint-tools
+
+# Install eyeD3
+pip install eyeD3
+
+git clone git@github.com:quilicicf/youtube-thingies.git
+cd youtube-thingies
+npm link
 ```
 
-Will search for the song in youtube API, download it into your shared folder and POST its metadata on your API.
+Write configuration in `~/.config/youtube-thingies.json`:
 
-### Search from record ID
+```json
+{
+  "login": "pandora login",
+  "password": "pandora password",
+  "musicFolder": "path to folder where the music will be downloaded",
+  "musicFile": "path to music file metadata"
+}
+```
+
+## Use
+
+### Retrieve thumbs-up
 
 ```shell
-#        | Command            | Record ID on the API
-ythingies searchFromApiRecord   206becd1-724f-468c-87ec-cd3b5df63466
+ythingies pandora-thumbsup
+```
+Writes the thumbs-up in your metadata file.
+
+### Download music
+
+```shell
+ythingies download
 ```
 
-Will search for the song on youtube API using the artist and name of the music it fetched from your API and download it into your shared folder.
+Downloads the musics from the metadata file that are not already present in the downloads folder.
 
-## Roadmap
-
-### MVP (no I'm definitely not there yet)
-
-- [ ] Actually download the music (first result for a start)
-- [ ] Chain handlers and document them
-- [ ] Actually push the new record on the user's API
-- [ ] Add a help command
-- [ ] Create a proper `config` command
-
-### The future
-
-- [ ] Create a command `bootstrap` to create from existing library
-- [ ] Add a command `delete`
-- [ ] Add syntax completion
-- [ ] Explain how to implement the API in the README
-- [ ] Explain how to install rsync in the README
-- [ ] Create/run playlists
-- [ ] Bulk download from API
-- [ ] Allow user to choose the link from youtube's API results
-- [ ] Conquer the world
-
-## Contributing
-
-If you'd like to give a hand, please contact me by email.
+Use with `-f` to automatically download the first (best) link.
